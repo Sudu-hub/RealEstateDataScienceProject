@@ -3,14 +3,14 @@ import pandas as pd
 import re
 import os
 
-def load_data(df):
+def load_data(df: pd.DataFrame)->pd.DataFrame:
     df.drop(columns=['link','property_id'], inplace=True)
     df.rename(columns={'area':'price_per_sqft'},inplace=True)
     df['society'] = df['society'].apply(lambda name: re.sub(r'\d+(\.\d+)?\s?★', '', str(name)).strip()).str.lower()
     df = df[df['price'] != 'Price on Request']
     return df
 
-def treat_price(x):
+def treat_price(x:str)-> str:
     if type(x) == float:
         return x
     else:
@@ -19,13 +19,13 @@ def treat_price(x):
         else:
             return round(float(x[0]),2)
         
-def clean_function(df):
+def clean_function(df:pd.DataFrame)->pd.DataFrame:
     df['price'] = df['price'].str.split(' ').apply(treat_price)
     df['price_per_sqft'] = df['price_per_sqft'].str.split('/').str.get(0).str.replace('₹','').str.replace(',','').str.strip().astype('float')
     df = df[~df['bedRoom'].isnull()]
     return df
 
-def change_data_type(df):
+def change_data_type(df:pd.DataFrame)->pd.DataFrame:
     df['bedRoom'] = df['bedRoom'].str.split(' ').str.get(0).astype('int')
     df['bathroom'] = df['bathroom'].str.split(' ').str.get(0).astype('int')
     df['balcony'] = df['balcony'].str.split(' ').str.get(0).str.replace('No','0')
@@ -36,7 +36,7 @@ def change_data_type(df):
     df.insert(loc=1,column='property_type',value='flat')
     return df
     
-def save_data(data_path,df):
+def save_data(data_path:str,df:pd.DataFrame):
     os.mkdir(data_path)
     df.to_csv(os.path.join(data_path, 'flat_cleaned.csv'))
 
