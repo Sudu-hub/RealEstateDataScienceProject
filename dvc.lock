@@ -5,11 +5,11 @@ stages:
     deps:
     - path: src/data/Flat_cleaning.py
       hash: md5
-      md5: 2be33c27ac70104b7f3c0fdae187b41d
-      size: 2104
+      md5: e64d79650f7615d99660cb2c5143299f
+      size: 5779
     outs:
     - path: data/flat_clean
       hash: md5
-      md5: dd0e735877fd3175c2de125dbaf26c85.dir
-      size: 5164988
+      md5: 7ad504f686613e1096c4021f859b5748.dir
+      size: 5144351
       nfiles: 1
