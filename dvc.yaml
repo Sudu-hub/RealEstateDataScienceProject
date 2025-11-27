@@ -1,0 +1,7 @@
+stages:
+  Flat_cleaning:
+    cmd: python src/data/Flat_cleaning.py
+    deps:
+    - src/data/Flat_cleaning.py
+    outs:
+    - data/flat_clean

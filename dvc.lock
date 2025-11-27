@@ -1,0 +1,15 @@
+schema: '2.0'
+stages:
+  Flat_cleaning:
+    cmd: python src/data/Flat_cleaning.py
+    deps:
+    - path: src/data/Flat_cleaning.py
+      hash: md5
+      md5: 3994a1e058eb9a63bcbca2792c0a365b
+      size: 1995
+    outs:
+    - path: data/flat_clean
+      hash: md5
+      md5: dd0e735877fd3175c2de125dbaf26c85.dir
+      size: 5164988
+      nfiles: 1
